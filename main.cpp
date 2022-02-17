@@ -31,13 +31,12 @@ Vector2 update(Ball& ballP) {
     }
     return ballP.ballPosition;
 };
-void render(void)
+void render(Ball& ballP)
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
-    Ball ball;
-    DrawText("Move the ball with the arrow keys", ball.ballPosition.x - 150, ball.ballPosition.y + 50, 16, BLACK);
-    DrawCircle(ball.ballPosition.x, ball.ballPosition.y, ballSize, BLUE);
+    DrawText("Move the ball with the arrow keys", ballP.ballPosition.x - 150, ballP.ballPosition.y + 50, 16, BLACK);
+    DrawCircle(ballP.ballPosition.x, ballP.ballPosition.y, ballSize, BLUE);
 
     EndDrawing();
 }
@@ -65,7 +64,7 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        render();
+        render(ball);
         //----------------------------------------------------------------------------------
     }
 
