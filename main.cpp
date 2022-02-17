@@ -1,9 +1,11 @@
 #include "raylib.h"
+#include <vector>
 
 const int screenWidth = 800;
 const int screenHeight = 450;
 const int ballSize = 30;
-
+std::vector<Vector2> squarePositions;
+Vector2 emptyVector;
 class Ball
 {
 public:
@@ -34,12 +36,8 @@ Vector2 update(Ball &ballP)
     if (IsKeyDown(KEY_SPACE))
     {
         Vector2 squareP;
-        squareP.x = ballP.ballPosition.x;
-        squareP.y = ballP.ballPosition.y;
-        for(int i = 0; i < 1000; i++)
-        {
-            DrawRectangle(squareP.x,squareP.y, ballSize, ballSize, BLACK);
-        }
+        squareP = ballP.ballPosition;
+        squarePositions.push_back(squareP);
     }
 
     return ballP.ballPosition;
