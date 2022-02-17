@@ -4,11 +4,13 @@ const int screenWidth = 800;
 const int screenHeight = 450;
 const int ballSize = 30;
 
-class Ball {
-    public:
+class Ball
+{
+public:
     Vector2 ballPosition = {(float)screenWidth / 2, (float)screenHeight / 2};
 };
-Vector2 update(Ball& ballP) {
+Vector2 update(Ball &ballP)
+{
     if (ballP.ballPosition.y < screenHeight - ballSize)
     {
         if (IsKeyDown(KEY_DOWN))
@@ -29,9 +31,20 @@ Vector2 update(Ball& ballP) {
         if (IsKeyDown(KEY_RIGHT))
             ballP.ballPosition.x += 2.0f;
     }
+    if (IsKeyDown(KEY_SPACE))
+    {
+        Vector2 squareP;
+        squareP.x = ballP.ballPosition.x;
+        squareP.y = ballP.ballPosition.y;
+        for(int i = 0; i < 1000; i++)
+        {
+            DrawRectangle(squareP.x,squareP.y, ballSize, ballSize, BLACK);
+        }
+    }
+
     return ballP.ballPosition;
 };
-void render(Ball& ballP)
+void render(Ball &ballP)
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
@@ -40,6 +53,7 @@ void render(Ball& ballP)
 
     EndDrawing();
 }
+
 Ball ball; // the beginning of a new ball :D
 int main(void)
 {
