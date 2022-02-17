@@ -40,6 +40,7 @@ void render(Ball& ballP)
 
     EndDrawing();
 }
+Ball ball; // the beginning of a new ball :D
 int main(void)
 {
     // Initialization
@@ -58,7 +59,6 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        Ball ball;
         update(ball);
         //----------------------------------------------------------------------------------
 
