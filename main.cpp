@@ -1,15 +1,15 @@
 #include "raylib.h"
 #include <vector>
 
-const int screenWidth = 800;
-const int screenHeight = 450;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 800;
 const int ballSize = 30;
 std::vector<Vector2> squarePositions;
 Vector2 emptyVector;
 class Ball
 {
 public:
-    Vector2 ballPosition = {(float)screenWidth / 2, (float)screenHeight / 2};
+    Vector2 ballPosition = {(float)SCREEN_WIDTH / 2, (float)SCREEN_HEIGHT / 2};
 };
 void drawSquares(Vector2 square)
 {
@@ -25,7 +25,7 @@ void findsquarePositions()
 }
 Vector2 update(Ball &ballP)
 {
-    if (ballP.ballPosition.y < screenHeight - ballSize)
+    if (ballP.ballPosition.y < SCREEN_HEIGHT - ballSize)
     {
         if (IsKeyDown(KEY_DOWN))
             ballP.ballPosition.y += 2.0f;
@@ -40,7 +40,7 @@ Vector2 update(Ball &ballP)
         if (IsKeyDown(KEY_LEFT))
             ballP.ballPosition.x -= 2.0f;
     }
-    if (ballP.ballPosition.x < screenWidth - ballSize)
+    if (ballP.ballPosition.x < SCREEN_WIDTH - ballSize)
     {
         if (IsKeyDown(KEY_RIGHT))
             ballP.ballPosition.x += 2.0f;
@@ -51,6 +51,8 @@ Vector2 update(Ball &ballP)
         squareP = ballP.ballPosition;
         squarePositions.push_back(squareP);
     }
+
+    return ballP.ballPosition;
 };
 
 void render(Ball &ballP)
@@ -68,11 +70,11 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int SCREEN_WIDTH = 800;
+    const int SCREEN_HEIGHT = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-    Vector2 startPosition = {(float)screenWidth / 2, (float)screenHeight / 2};
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib [core] example - basic window");
+    Vector2 startPosition = {(float)SCREEN_WIDTH / 2, (float)SCREEN_HEIGHT / 2};
 
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
