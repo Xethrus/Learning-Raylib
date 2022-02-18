@@ -13,9 +13,8 @@ public:
 };
 void drawSquares(Vector2 square)
 {
-    for( ; ;) {
-        DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
-    }
+
+    DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
 }
 void findsquarePositions()
 {
@@ -51,7 +50,6 @@ Vector2 update(Ball &ballP)
         Vector2 squareP;
         squareP = ballP.ballPosition;
         squarePositions.push_back(squareP);
-        findsquarePositions();
     }
 
     return ballP.ballPosition;
@@ -92,6 +90,7 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         render(ball);
+        findsquarePositions();
         //----------------------------------------------------------------------------------
     }
 
