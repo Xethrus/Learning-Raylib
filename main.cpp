@@ -11,6 +11,19 @@ class Ball
 public:
     Vector2 ballPosition = {(float)screenWidth / 2, (float)screenHeight / 2};
 };
+void drawSquares(Vector2 square)
+{
+    while (!WindowShouldClose()) {
+        DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
+    }
+}
+void findsquarePositions()
+{
+    for (int i=0; i < squarePositions.size(); i++)
+    {
+        drawSquares(squarePositions[i]);
+    }
+}
 Vector2 update(Ball &ballP)
 {
     if (ballP.ballPosition.y < screenHeight - ballSize)
@@ -43,19 +56,7 @@ Vector2 update(Ball &ballP)
 
     return ballP.ballPosition;
 };
-void drawSquares(Vector2 square)
-{
-    while (!WindowShouldClose()) {
-        DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
-    }
-}
-void findsquarePositions()
-{
-    for (int i=0; i < squarePositions.size(); i++)
-    {
-        drawSquares(squarePositions[i]);
-    }
-}
+
 void render(Ball &ballP)
 {
     BeginDrawing();
