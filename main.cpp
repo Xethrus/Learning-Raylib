@@ -13,7 +13,7 @@ public:
 };
 void drawSquares(Vector2 square)
 {
-    while (!WindowShouldClose()) {
+    for( ; ;) {
         DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
     }
 }
