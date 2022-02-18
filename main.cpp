@@ -61,7 +61,7 @@ void render(Ball &ballP)
     ClearBackground(RAYWHITE);
     DrawText("Move the ball with the arrow keys", ballP.ballPosition.x - 150, ballP.ballPosition.y + 50, 16, BLACK);
     DrawCircle(ballP.ballPosition.x, ballP.ballPosition.y, ballSize, BLUE);
-
+    findsquarePositions();
     EndDrawing();
 }
 
@@ -90,7 +90,6 @@ int main(void)
         // Draw
         //----------------------------------------------------------------------------------
         render(ball);
-        findsquarePositions();
         //----------------------------------------------------------------------------------
     }
 
