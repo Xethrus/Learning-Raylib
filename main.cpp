@@ -51,8 +51,6 @@ Vector2 update(Ball &ballP)
         squareP = ballP.ballPosition;
         squarePositions.push_back(squareP);
     }
-
-    return ballP.ballPosition;
 };
 
 void render(Ball &ballP)
