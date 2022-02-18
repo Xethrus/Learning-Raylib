@@ -42,6 +42,19 @@ Vector2 update(Ball &ballP)
 
     return ballP.ballPosition;
 };
+void findsquarePositions()
+{
+    for (int i=0; i < squarePositions.size(); i++)
+    {
+        drawSquares(squarePositions[i]);
+    }
+}
+void drawSquares(Vector2 square)
+{
+    while (!WindowShouldClose()) {
+        DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
+    }
+}
 void render(Ball &ballP)
 {
     BeginDrawing();
