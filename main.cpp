@@ -38,21 +38,22 @@ Vector2 update(Ball &ballP)
         Vector2 squareP;
         squareP = ballP.ballPosition;
         squarePositions.push_back(squareP);
+        findsquarePositions();
     }
 
     return ballP.ballPosition;
 };
+void drawSquares(Vector2 square)
+{
+    while (!WindowShouldClose()) {
+        DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
+    }
+}
 void findsquarePositions()
 {
     for (int i=0; i < squarePositions.size(); i++)
     {
         drawSquares(squarePositions[i]);
-    }
-}
-void drawSquares(Vector2 square)
-{
-    while (!WindowShouldClose()) {
-        DrawRectangle(square.x,square.y,ballSize,ballSize,BLACK);
     }
 }
 void render(Ball &ballP)
