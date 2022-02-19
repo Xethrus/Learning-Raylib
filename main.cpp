@@ -3,7 +3,7 @@
 
 const float SCREEN_WIDTH = 800;
 const float SCREEN_HEIGHT = 800;
-std::vector<Vector2> squarePositions;
+std::vector<Square> squarePositions;
 
 class Ball
 {
@@ -29,7 +29,7 @@ void iteratePositions()
 {
     for (const auto& s : squarePositions)
     {
-        drawSquare(s.squarePosition)
+        drawSquare(s.squarePosition);
     }
 }
 void update(Ball &ballP, Square &squareP)
@@ -71,7 +71,8 @@ void render(Ball &ballP)
     EndDrawing();
 }
 
-Ball ball; // the beginning of a new ball :D
+Ball ball(0,0,30);
+Square square(0,0,30); // the beginning of a new ball :D
 int main(void)
 {
     // Initialization
@@ -90,7 +91,7 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        update(ball);
+        update(ball, square);
         //----------------------------------------------------------------------------------
 
         // Draw
