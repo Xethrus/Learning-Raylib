@@ -10,7 +10,7 @@ class Ball
 public:
     Vector2 ballPosition;
     const int BALL_SIZE;
-    Ball(float x, float y, int size) : ballPosition{x, y}, BALL_SIZE{30} {};
+    Ball(float x, float y, int size) : ballPosition{x, y}, BALL_SIZE{size} {};
 };
 class Square
 {
@@ -18,21 +18,21 @@ public:
     Vector2 squarePosition;
     const int SQUARE_SIZE;
     Color SQUARE_COLOR = {0,0,0,255};
-    Square(float x, float y, int size) : squarePosition{x,y}, SQUARE_SIZE{30} {};
+    Square(float x, float y, int size) : squarePosition{x,y}, SQUARE_SIZE{size} {};
 };
 
 void drawSquare(Square &squareP)
 {
-    DrawRectangle(squareP.squarePosition.x,squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE,BLACK);
+    DrawRectangle(squareP.squarePosition.x,squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE, squareP.SQUARE_COLOR);
 }
 void iteratePositions()
 {
     for (const auto& s : squarePositions)
     {
-        drawSquare(s);
+        drawSquare(s.squarePosition)
     }
 }
-Vector2 update(Ball &ballP)
+void update(Ball &ballP, Square &squareP)
 {
     if (ballP.ballPosition.y < SCREEN_HEIGHT - ballP.BALL_SIZE)
     {
@@ -56,12 +56,9 @@ Vector2 update(Ball &ballP)
     }
     if (IsKeyDown(KEY_SPACE))
     {
-        Vector2 squareP;
-        squareP = ballP.ballPosition;
-        squarePositions.push_back(squareP);
+        squareP.squarePosition = ballP.ballPosition;
+        squarePositions.push_back(squareP.squarePosition);
     }
-
-    return ballP.ballPosition;
 };
 
 void render(Ball &ballP)
