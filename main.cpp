@@ -3,8 +3,6 @@
 
 const float SCREEN_WIDTH = 800;
 const float SCREEN_HEIGHT = 800;
-std::vector<Square> squarePositions;
-
 class Ball
 {
 public:
@@ -20,16 +18,16 @@ public:
     Color SQUARE_COLOR = {0,0,0,255};
     Square(float x, float y, int size) : squarePosition{x,y}, SQUARE_SIZE{size} {};
 };
-
-void drawSquare(Square &squareP)
+std::vector<Square> squarePositions;
+void drawSquare(const Square &squareP)
 {
-    DrawRectangle(squareP.squarePosition.x,squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE, squareP.SQUARE_COLOR);
+    DrawRectangle((int)squareP.squarePosition.x,(int)squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE, squareP.SQUARE_COLOR);
 }
 void iteratePositions()
 {
     for (const auto& s : squarePositions)
     {
-        drawSquare(s.squarePosition);
+        drawSquare(s);
     }
 }
 void update(Ball &ballP, Square &squareP)
@@ -56,8 +54,8 @@ void update(Ball &ballP, Square &squareP)
     }
     if (IsKeyDown(KEY_SPACE))
     {
-        squareP.squarePosition = ballP.ballPosition;
-        squarePositions.push_back(squareP.squarePosition);
+        Square square(ballP.ballPosition.x,ballP.ballPosition.y,30);
+        squarePositions.push_back(square);
     }
 };
 
@@ -71,12 +69,12 @@ void render(Ball &ballP)
     EndDrawing();
 }
 
-Ball ball(0,0,30);
 Square square(0,0,30); // the beginning of a new ball :D
 int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
+    Ball ball(0,0,30);
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 450;
 
