@@ -12,17 +12,24 @@ public:
     const int BALL_SIZE;
     Ball(float x, float y, int size) : ballPosition{x, y}, BALL_SIZE{30} {};
 };
-
-void drawSquare(Vector2 square, Ball &ballP)
+class Square
 {
+public:
+    Vector2 squarePosition;
+    const int SQUARE_SIZE;
+    Color SQUARE_COLOR = {0,0,0,255};
+    Square(float x, float y, int size) : squarePosition{x,y}, SQUARE_SIZE{30} {};
+};
 
-    DrawRectangle(square.x,square.y, ballP.BALL_SIZE, ballP.BALL_SIZE,BLACK);
+void drawSquare(Square &squareP)
+{
+    DrawRectangle(squareP.squarePosition.x,squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE,BLACK);
 }
 void iteratePositions()
 {
     for (const auto& s : squarePositions)
     {
-        drawSquare(s, ball);
+        drawSquare(s);
     }
 }
 Vector2 update(Ball &ballP)
