@@ -31,6 +31,12 @@ void iteratePositions(std::vector<Square> squarePositions) //not sure if I shoul
         drawSquare(s, squarePositions);
     }
 }
+void squareRight(std::vector<Square> &squarePositions){
+    for (auto& s : squarePositions)
+    {
+        s.squarePosition.y += 100;
+    }
+}
 void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here- this kinda makes sense
 {
     std::cout << squarePositions.size() << std::endl;
@@ -69,6 +75,7 @@ void render(Ball &ballP, std::vector<Square> squarePositions)
     DrawText("Move the ball with the arrow keys", ballP.ballPosition.x - 150, ballP.ballPosition.y + 50, 16, BLACK);
     DrawCircle(ballP.ballPosition.x, ballP.ballPosition.y, ballP.BALL_SIZE, BLUE);
     iteratePositions(squarePositions);
+    squareRight(squarePositions);
     EndDrawing();
 }
 
