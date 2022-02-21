@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include <iostream>
 #include <vector>
 
 const float SCREEN_WIDTH = 800;
@@ -30,8 +31,9 @@ void iteratePositions(std::vector<Square> squarePositions) //not sure if I shoul
         drawSquare(s, squarePositions);
     }
 }
-void update(Ball &ballP, std::vector<Square> squarePositions) //passed it here- this kinda makes sense
+void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here- this kinda makes sense
 {
+    std::cout << squarePositions.size() << std::endl;
     if (ballP.ballPosition.y < SCREEN_HEIGHT - ballP.BALL_SIZE)
     {
         if (IsKeyDown(KEY_DOWN))
@@ -56,6 +58,7 @@ void update(Ball &ballP, std::vector<Square> squarePositions) //passed it here- 
     {
         Square square(ballP.ballPosition.x,ballP.ballPosition.y,30);
         squarePositions.push_back(square);
+        std::cout << squarePositions.size() << std::endl;
     }
 };
 
