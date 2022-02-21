@@ -18,19 +18,19 @@ public:
     Color SQUARE_COLOR = {0,0,0,255};
     Square(float x, float y, int size) : squarePosition{x,y}, SQUARE_SIZE{size} {};
 };
-std::vector<Square> squarePositions;
-void drawSquare(const Square &squareP)
+//std::vector<Square> squarePositions;
+void drawSquare(const Square &squareP, std::vector<Square> squarePositions)
 {
     DrawRectangle((int)squareP.squarePosition.x,(int)squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE, squareP.SQUARE_COLOR);
 }
-void iteratePositions()
+void iteratePositions(std::vector<Square> squarePositions) //not sure if I should pass it here
 {
     for (const auto& s : squarePositions)
     {
-        drawSquare(s);
+        drawSquare(s, squarePositions);
     }
 }
-void update(Ball &ballP, Square &squareP)
+void update(Ball &ballP, std::vector<Square> squarePositions) //passed it here- this kinda makes sense
 {
     if (ballP.ballPosition.y < SCREEN_HEIGHT - ballP.BALL_SIZE)
     {
@@ -59,13 +59,13 @@ void update(Ball &ballP, Square &squareP)
     }
 };
 
-void render(Ball &ballP)
+void render(Ball &ballP, std::vector<Square> squarePositions)
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
     DrawText("Move the ball with the arrow keys", ballP.ballPosition.x - 150, ballP.ballPosition.y + 50, 16, BLACK);
     DrawCircle(ballP.ballPosition.x, ballP.ballPosition.y, ballP.BALL_SIZE, BLUE);
-    iteratePositions();
+    iteratePositions(squarePositions);
     EndDrawing();
 }
 
@@ -79,8 +79,8 @@ int main(void)
     const int SCREEN_HEIGHT = 450;
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib [core] example - basic window");
-    Vector2 startPosition = {(float)SCREEN_WIDTH / 2, (float)SCREEN_HEIGHT / 2};
-
+    //Vector2 startPosition = {(float)SCREEN_WIDTH / 2, (float)SCREEN_HEIGHT / 2}; if i ever want to use this
+    std::vector<Square> squarePositions;
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
@@ -89,12 +89,12 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        update(ball, square);
+        update(ball, squarePositions);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        render(ball);
+        render(ball, squarePositions);
         //----------------------------------------------------------------------------------
     }
 
