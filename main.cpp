@@ -31,10 +31,11 @@ void iteratePositions(std::vector<Square> squarePositions) //not sure if I shoul
         drawSquare(s, squarePositions);
     }
 }
-void squareRight(std::vector<Square> &squarePositions){
+void squareRight(Square &squareP, std::vector<Square> &squarePositions){
     for (auto& s : squarePositions)
     {
         s.squarePosition.y += 100;
+        
     }
 }
 void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here- this kinda makes sense
@@ -68,14 +69,14 @@ void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here-
     }
 };
 
-void render(Ball &ballP, std::vector<Square> squarePositions)
+void render(Ball &ballP, std::vector<Square> squarePositions, Square &squareP)
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
     DrawText("Move the ball with the arrow keys", ballP.ballPosition.x - 150, ballP.ballPosition.y + 50, 16, BLACK);
     DrawCircle(ballP.ballPosition.x, ballP.ballPosition.y, ballP.BALL_SIZE, BLUE);
     iteratePositions(squarePositions);
-    squareRight(squarePositions);
+    squareRight(squareP, squarePositions);
     EndDrawing();
 }
 
@@ -104,7 +105,7 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        render(ball, squarePositions);
+        render(ball, squarePositions, square); //currently does not do anything (need to pass in square s : squarePositions)
         //----------------------------------------------------------------------------------
     }
 
