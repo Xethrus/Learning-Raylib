@@ -23,6 +23,10 @@ public:
 void drawSquare(const Square &squareP, std::vector<Square> squarePositions)
 {
     DrawRectangle((int)squareP.squarePosition.x,(int)squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE, squareP.SQUARE_COLOR);
+    for(int i = 0; i < 100; i++)
+    {
+        squareP.squarePosition.x = squareP.squarePosition.x + 1;
+    }
 }
 void iteratePositions(std::vector<Square> squarePositions) //not sure if I should pass it here
 {
@@ -31,13 +35,11 @@ void iteratePositions(std::vector<Square> squarePositions) //not sure if I shoul
         drawSquare(s, squarePositions);
     }
 }
-void squareRight(std::vector<Square> &squarePositions){
-    for (auto& s : squarePositions)
-    {
-        s.squarePosition.y += 100;
-        std::cout << s.squarePosition.y;
-    }
-}
+// void squareRight(std::vector<Square> &squarePositions){
+//     for (auto& s : squarePositions)
+//     {
+//     }
+// }
 void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here- this kinda makes sense
 {
     std::cout << squarePositions.size() << std::endl;
