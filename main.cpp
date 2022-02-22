@@ -35,7 +35,7 @@ void squareRight(Square &squareP, std::vector<Square> &squarePositions){
     for (auto& s : squarePositions)
     {
         s.squarePosition.y += 100;
-        
+        std::cout << s.squarePosition.y;
     }
 }
 void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here- this kinda makes sense
