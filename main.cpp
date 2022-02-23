@@ -44,7 +44,7 @@ void dealocateSquare(std::vector<Square> &squarePositions)
     {
         if(s.squarePosition.x > SCREEN_WIDTH)
         {
-            remove(s);
+            remove(s); //gotta use remove function with iterator implementation lol "remove_if"
         }
     }
 }
