@@ -38,6 +38,17 @@ void squareRight(std::vector<Square> &squarePositions){
         s.squarePosition.x += 100;
     }
 }
+void dealocateSquare(std::vector<Square> &squarePositions)
+{
+    for (std::vector<Square>::iterator s = squarePositions.begin(); s != squarePositions.end(); )
+    {
+        if(s.squarePosition.x > SCREEN_WIDTH )
+        {
+            s = squarePositions.erase(s.squarePosition.x);
+        }
+    }
+}
+
 void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here- this kinda makes sense
 {
     std::cout << squarePositions.size() << std::endl;
