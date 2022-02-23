@@ -67,6 +67,8 @@ void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here-
         squarePositions.push_back(square);
         std::cout << squarePositions.size() << std::endl;
     }
+    iteratePositions(squarePositions);
+    squareRight(squarePositions);
 };
 
 void render(Ball &ballP, std::vector<Square> &squarePositions)
@@ -75,8 +77,6 @@ void render(Ball &ballP, std::vector<Square> &squarePositions)
     ClearBackground(RAYWHITE);
     DrawText("Move the ball with the arrow keys", ballP.ballPosition.x  - 150, ballP.ballPosition.y + 50, 16, BLACK);
     DrawCircle(ballP.ballPosition.x, ballP.ballPosition.y, ballP.BALL_SIZE, BLUE);
-    iteratePositions(squarePositions);
-    //squareRight(squarePositions);
     EndDrawing();
 }
 
