@@ -40,11 +40,11 @@ void squareRight(std::vector<Square> &squarePositions){
 }
 void dealocateSquare(std::vector<Square> &squarePositions)
 {
-    for (std::vector<Square>::iterator s = squarePositions.begin(); s != squarePositions.end(); )
+    for (auto& s : squarePositions)
     {
-        if(s.squarePosition.x > SCREEN_WIDTH )
+        if(s.squarePosition.x > SCREEN_WIDTH)
         {
-            s = squarePositions.erase(s.squarePosition.x);
+            remove(s);
         }
     }
 }
