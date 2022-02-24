@@ -43,7 +43,7 @@ void dealocateSquare(std::vector<Square> &squarePositions)
     auto iter = squarePositions.begin();
     for (iter = squarePositions.begin(); iter < squarePositions.end(); iter++)
     {
-        if(*iter.squarePosition.x > SCREEN_WIDTH)
+        if(iter->squarePosition.x > SCREEN_WIDTH)
         {
             iter = squarePositions.erase(iter);
         }
