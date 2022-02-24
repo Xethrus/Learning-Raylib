@@ -42,8 +42,11 @@ void dealocateSquare(std::vector<Square> &squarePositions)
 {
     for (auto& s : squarePositions)
     {
-        std::vector<Square>::iterator ptr;
-        
+        //std::vector<Square>::iterator ptr;
+        if (s.squarePosition.x > SCREEN_WIDTH)
+        {
+            auto outOfRange = std::remove(squarePositions.begin(), squarePositions.end(), s.squarePosition.x);
+        }
     }
 }
 
@@ -124,3 +127,4 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     return 0;
+}
