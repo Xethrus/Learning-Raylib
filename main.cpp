@@ -40,12 +40,12 @@ void squareRight(std::vector<Square> &squarePositions){
 }
 void dealocateSquare(std::vector<Square> &squarePositions)
 {
-    for (auto& s : squarePositions)
+    auto iter = squarePositions.begin();
+    for (iter = squarePositions.begin(); iter < squarePositions.end(); iter++)
     {
-        //std::vector<Square>::iterator ptr;
-        if (s.squarePosition.x > SCREEN_WIDTH)
+        if(*iter.squarePosition.x > SCREEN_WIDTH)
         {
-            auto outOfRange = std::remove(squarePositions.begin(), squarePositions.end(), s.squarePosition.x);
+            std::remove(squarePositions.begin(), squarePositions.end(), s.squarePosition.x);
         }
     }
 }
