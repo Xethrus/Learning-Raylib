@@ -8,22 +8,23 @@ class Ball
 {
 public:
     Vector2 ballPosition;
-    const int BALL_SIZE;
-    Ball(float x, float y, int size) : ballPosition{x, y}, BALL_SIZE{size} {};
+    const float BALL_SIZE;
+    Ball(float x, float y, float size) : ballPosition{x, y}, BALL_SIZE{size} {};
 };
 class Square
 {
 public:
     Vector2 squarePosition;
-    const int SQUARE_SIZE;
+    float SQUARE_SIZE;
     Color SQUARE_COLOR = {0,0,0,255};
-    Square(float x, float y, int size) : squarePosition{x,y}, SQUARE_SIZE{size} {};
+    Square(float x, float y, float size) : squarePosition{x,y}, SQUARE_SIZE{size} {};
 };
 //std::vector<Square> squarePositions;
 void drawSquare(const Square &squareP, std::vector<Square> squarePositions)
 {
-    DrawRectangle((int)squareP.squarePosition.x,(int)squareP.squarePosition.y, squareP.SQUARE_SIZE, squareP.SQUARE_SIZE, squareP.SQUARE_COLOR);
+    DrawRectangle((int)squareP.squarePosition.x,(int)squareP.squarePosition.y, (int)squareP.SQUARE_SIZE, (int)squareP.SQUARE_SIZE, squareP.SQUARE_COLOR);
 }
+
 void iteratePositions(std::vector<Square> squarePositions) //not sure if I should pass it here
 {
     for (const auto& s : squarePositions)
@@ -31,6 +32,7 @@ void iteratePositions(std::vector<Square> squarePositions) //not sure if I shoul
         drawSquare(s, squarePositions);
     }
 }
+
 void squareRight(std::vector<Square> &squarePositions){
     for (auto& s : squarePositions)
     {
@@ -38,8 +40,10 @@ void squareRight(std::vector<Square> &squarePositions){
         s.squarePosition.x += 100;
     }
 }
+
 void dealocateSquare(std::vector<Square> &squarePositions)
 {
+    auto iter = squarePositions.begin();
     while (iter != squarePositions.end())
     {
         if(iter->squarePosition.x > SCREEN_WIDTH)
@@ -74,7 +78,7 @@ void update(Ball &ballP, std::vector<Square> &squarePositions) //passed it here-
     }
     if (IsKeyDown(KEY_SPACE))
     {
-        Square square(ballP.ballPosition.x,ballP.ballPosition.y,30);
+        Square square(ballP.ballPosition.x,ballP.ballPosition.y,30.0);
         squarePositions.push_back(square);
         std::cout << squarePositions.size() << std::endl;
     }
@@ -86,8 +90,8 @@ void render(Ball &ballP, std::vector<Square> &squarePositions)
 {
     BeginDrawing();
     ClearBackground(RAYWHITE);
-    DrawText("Move the ball with the arrow keys", ballP.ballPosition.x  - 150, ballP.ballPosition.y + 50, 16, BLACK);
-    DrawCircle(ballP.ballPosition.x, ballP.ballPosition.y, ballP.BALL_SIZE, BLUE);
+    DrawText("Move the ball with the arrow keys", (int)ballP.ballPosition.x  - 150, (int)ballP.ballPosition.y + 50, 16, BLACK);
+    DrawCircle((int)ballP.ballPosition.x, (int)ballP.ballPosition.y, ballP.BALL_SIZE, BLUE);
     EndDrawing();
 }
 
